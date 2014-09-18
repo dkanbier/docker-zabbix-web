@@ -13,12 +13,6 @@ The idea is to use this container with docker-zabbix-mysql and docker-zabbix-ser
 
 This is an example to create a working Zabbix 2.4 server using docker-zabbix-server.
 
-Create a data-only container to hold the schema data for the database:
-
-````
-docker run -v /usr/share/doc/zabbix-server-mysql-2.4.0 -name zabbix-doc busybox true
-````
-
 Create a data-only container to hold the actual database data:
 
 ````
@@ -54,7 +48,7 @@ Now we have every component of Zabbix in a separate container, ready to start:
 Start the database:
 
 ````
-docker run -d --name zabbix-db --volumes-from zabbix-doc:ro --volumes-from zabbix-data dkanbier/zabbix-db
+docker run -d --name zabbix-db --volumes-from zabbix-data dkanbier/zabbix-db
 ````
 
 Start the Zabbix server and link it to the database:
